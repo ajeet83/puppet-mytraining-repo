@@ -1,0 +1,13 @@
+version: 5
+
+default:
+  datadir: data
+
+hierarchy:
+
+  - name: "Node-specific"
+    path: "nodes/%{trusted.certname}.yaml"
+
+  - name: "Common"
+    path: "common.yaml"
+
