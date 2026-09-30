@@ -1,3 +1,3 @@
-node 'deffault'{
+node 'default'{
   include role::web
 }
