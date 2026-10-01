@@ -1,6 +1,6 @@
 version: 5
 
-default:
+defaults:
   datadir: data
 
 hierarchy:
