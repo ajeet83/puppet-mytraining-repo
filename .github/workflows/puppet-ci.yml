@@ -1,0 +1,40 @@
+name: Puppet CI
+
+on:
+  push:
+    branches: [ production ]   # Run workflow when code is pushed to the production branch
+  pull_request:
+    branches: [ production ]   # Run workflow when a PR targets the production branch
+
+jobs:
+  lint-and-validate:
+    runs-on: ubuntu-latest     # Use the latest Ubuntu runner provided by GitHub
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        # Pulls your repository code into the runner so the workflow can access it
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+        # Installs Ruby (needed because puppet-lint and Puppet are Ruby gems)
+
+      - name: Install puppet-lint
+        run: gem install puppet-lint
+        # Installs puppet-lint gem so you can check Puppet manifest style
+
+      - name: Run puppet-lint
+        run: puppet-lint --no-autoloader_layout-check --no-140chars-check site-modules/
+        # Runs puppet-lint against your manifests in site-modules/
+        # Flags style issues but ignores autoloader layout and 140-char line length checks
+
+      - name: Install Puppet
+        run: gem install puppet
+        # Installs Puppet gem so you can run parser validation
+
+      - name: Validate manifests
+        run: |
+          find site-modules -name '*.pp' -print0 | xargs -0 puppet parser validate
+        # Finds all Puppet manifest files (*.pp) and validates their syntax
