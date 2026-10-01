@@ -38,3 +38,11 @@ jobs:
         run: |
           find site-modules -name '*.pp' -print0 | xargs -0 puppet parser validate
         # Finds all Puppet manifest files (*.pp) and validates their syntax
+
+      - name: Install r10k
+        run: gem install r10k
+        # Step 7 (Optional): Installs r10k gem to check Puppetfile and environment deployment
+
+      - name: r10k Puppetfile check
+        run: r10k puppetfile check
+        # Verifies Puppetfile syntax and dependencies without deploying environments
