@@ -1,1 +1,2 @@
 profile:naginx::port: 80
+motd::message: "Hello from Puppet common data!"
