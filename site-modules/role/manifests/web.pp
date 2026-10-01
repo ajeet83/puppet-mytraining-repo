@@ -3,6 +3,6 @@
 #
 class role::web {
   # resources
-  include profile::naginx
+  include profile::nginx
   include profile::base
 }
