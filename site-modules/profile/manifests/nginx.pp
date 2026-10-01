@@ -6,6 +6,6 @@
 #
 class profile::nginx( Integer $port = 80) {
     class { 'nginx':
-        managed_repo => true
+        config_file_replace => true
     }
 }
