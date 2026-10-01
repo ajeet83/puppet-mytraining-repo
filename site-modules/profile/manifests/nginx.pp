@@ -6,6 +6,6 @@
 #
 class profile::nginx( Integer $port = 80) {
     class { 'nginx':
-        config_file_replace => true
+        service_enable => true
     }
 }
