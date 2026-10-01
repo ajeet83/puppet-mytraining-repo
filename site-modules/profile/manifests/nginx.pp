@@ -8,4 +8,16 @@ class profile::nginx( Integer $port = 80) {
     class { 'nginx':
         service_enable => true
     }
+
+    file { '/etc/nginx/conf.d/app.conf':
+        ensure  => file,
+        content => template('profile/app.conf.erb'),
+        require => Class['nginx'],
+        notify  => Service['nginx'],
+    }
+
+    service { 'nginx':
+        ensure => running,
+        enable => true,
+    }
 }
