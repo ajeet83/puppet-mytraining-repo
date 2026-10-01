@@ -15,9 +15,4 @@ class profile::nginx( Integer $port = 80) {
         require => Class['nginx'],
         notify  => Service['nginx'],
     }
-
-    service { 'nginx':
-        ensure => running,
-        enable => true,
-    }
 }
