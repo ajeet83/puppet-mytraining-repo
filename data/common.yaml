@@ -1,2 +1,5 @@
 profile:naginx::port: 80
 motd::message: "Hello from Puppet common data!"
+profile::app_name: "myapp"
+profile::environment: "production"
+profile::app_port: 8080
