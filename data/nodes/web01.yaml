@@ -1,2 +1,4 @@
 profile:naginx::port: 8080
 motd::message: "This is web01, managed by Puppet!"
+profile::app_port: 8080
+profile::environment: "development"
