@@ -1,7 +1,11 @@
 # Class: name
 #
 #
-class profile::app {
+class profile::app (
+  String $app_name,
+  String $environment,
+  Integer $app_port,
+) {
   # resources
   file { '/etc/myapp':
     ensure => directory,
